@@ -1,28 +1,28 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import { Box, Heading } from "@chakra-ui/react";
-import "./App.css";
-import LocationForm from "./components/LocationForm";
-import MapIframe from "./components/RouteMap";
-import initMap from "./components/MapWithPolyline";
-import GoogleMapScript from "./components/GoogleMapScript";
-import GoogleMap from "./components/MapWithPolyline";
+// Proposed layout for the new frontend design
+
+// Assuming you're using React and the existing map components like GoogleMapScript or MapWithPolyline
+// Below is an approach to reorganize the layout to have a full-screen map with a sidebar containing the input fields and button.
+
+/* App.jsx */
+
+import React from 'react';
+import './App.css';
+import MapWithPolyline from './components/MapWithPolyline'; // Existing map component
+import LocationForm from './components/LocationForm'; // Component for input boxes
 
 function App() {
-  const handleFormSubmit = (start, end) => {
-    console.log("Start Location:", start);
-    console.log("End Location:", end);
-  };
-
   return (
-    <ChakraProvider>
-      <Box width="100%" height="100%">
-        <LocationForm onSubmit={handleFormSubmit} />
-        {/* <MapIframe /> */}
-        {/* <GoogleMapScript apiKey={"AIzaSyBAawKtT7nWE1mCyo2PgM6yIt3_UiU5qII"} /> */}
-        <GoogleMap />
-      </Box>
-    </ChakraProvider>
+    <div className="app-container">
+      <div className="sidebar">
+        <h2>Route Planner</h2>
+        <LocationForm /> {/* The component for the input fields and button */}
+      </div>
+      <div className="map-container">
+        <MapWithPolyline /> {/* Fullscreen map */}
+      </div>
+    </div>
   );
 }
 
 export default App;
+
