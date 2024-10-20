@@ -1,33 +1,40 @@
+// src/GoogleMap.jsx
 import React, { useEffect, useRef } from "react";
-import { Helmet } from "react-helmet";
 import { Box } from "@chakra-ui/react";
+import { Helmet } from "react-helmet";
 
-const GoogleMap = ({ encodedPolyline }) => {
-  const mapRef = useRef(null);
+// Encoded polyline
+// const encodedPolyline =
+//   "w~fmEv|saOm@?O?s@?{A?Q?qDDE?WBU@OBa@@EDE@EF_@HSBq@L]Fc@L_@JC?MDIB]L[PWNIDMHQJMFw@b@GBe@Vk@ZSTOPIHSVGHSVOPOPQPGJMJg@b@IHKHKFQJ]Xs@n@KJEBEDKHINMXCBKRQXg@`Ao@jAMTe@z@EDc@j@CDEFKPU`@Q\\MZOd@Mf@AFCT?D?D?FAL?D?D?D?F?H@ZBz@@XHV?N?D?J?L?FAL?JAJAF?FAFAFABEVAHGZIVG^CHCPCVALGb@I~@G^CNEPENCHKZWj@INOTSXa@l@Yb@o@bA?@m@|@MTQVOPEFGFIHMJo@f@[RA@AB[T_@VYPe@^]V]VKHC@MJWVCBUTCDY^U^W`@CDSXU\\A@WXABUPQJEDKFKHMHGBWNWLEDEDEBGF";
+
+const GoogleMap = (encodedPolyline, eta) => {
+  const mapRef = useRef(null); // Reference to the map container
+
+  // Function to decode levels
+  const decodeLevels = (encodedLevelsString) => {
+    const decodedLevels = [];
+    for (let i = 0; i < encodedLevelsString.length; ++i) {
+      const level = encodedLevelsString.charCodeAt(i) - 63;
+      decodedLevels.push(level);
+    }
+    return decodedLevels;
+  };
 
   useEffect(() => {
-    const loadScript = (url) => {
-      const script = document.createElement("script");
-      script.src = url;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-      script.onload = () => {
-        initMap();
-      };
-    };
-
-    const initMap = () => {
+    // Wait for the Google Maps script to load
+    if (typeof google !== "undefined") {
+      // Initialize the map once the component is mounted
+      const myLatlng = new google.maps.LatLng(33.7490, -84.3880);
       const myOptions = {
-        zoom: 13,
-        center: { lat: 33.7490, lng: -84.3880 }, // Default center: Atlanta, Georgia
+        zoom: 8,
+        center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       };
-
       const map = new google.maps.Map(mapRef.current, myOptions);
 
       // Decode the polyline path
-      const decodedPath = google.maps.geometry.encoding.decodePath(encodedPolyline);
+      const decodedPath =
+        google.maps.geometry.encoding.decodePath(encodedPolyline);
       const decodedLevels = decodeLevels("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
 
       // Create the polyline and set its options
@@ -39,22 +46,8 @@ const GoogleMap = ({ encodedPolyline }) => {
         strokeWeight: 2,
         map: map,
       });
-    };
-
-    const decodeLevels = (encodedLevelsString) => {
-      const decodedLevels = [];
-      for (let i = 0; i < encodedLevelsString.length; ++i) {
-        decodedLevels.push(encodedLevelsString.charCodeAt(i) - 63);
-      }
-      return decodedLevels;
-    };
-
-    loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(
-        "AIzaSyBAawKtT7nWE1mCyo2PgM6yIt3_UiU5qII"
-      )}&libraries=geometry`
-    );
-  }, [encodedPolyline]);
+    }
+  }, []);
 
   return (
     <>
@@ -67,6 +60,11 @@ const GoogleMap = ({ encodedPolyline }) => {
           defer
         />
       </Helmet>
+      {eta && (
+        <div>
+        <p>Estimated time of arrival: ${eta}</p>
+        </div>
+      )}
       <Box ref={mapRef} width="100%" height="400px" />
     </>
   );
