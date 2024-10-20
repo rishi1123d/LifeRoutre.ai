@@ -24,7 +24,7 @@ const GoogleMap = () => {
     // Wait for the Google Maps script to load
     if (typeof google !== "undefined") {
       // Initialize the map once the component is mounted
-      const myLatlng = new google.maps.LatLng(33.7501, 84.3885);
+      const myLatlng = new google.maps.LatLng(33.7490, -84.3880);
       const myOptions = {
         zoom: 8,
         center: myLatlng,
@@ -54,13 +54,13 @@ const GoogleMap = () => {
       <Helmet>
         <script
           src={`https://maps.googleapis.com/maps/api/js?key=${
-            import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+            encodeURIComponent("AIzaSyBAawKtT7nWE1mCyo2PgM6yIt3_UiU5qII")
           }&libraries=geometry`}
           async
           defer
         />
       </Helmet>
-      <Box ref={mapRef} width="100%" height="400px" />
+      <Box ref={mapRef} width="100%" height="400px"/>
     </>
   );
 };
