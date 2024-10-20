@@ -53,14 +53,14 @@ const GoogleMap = () => {
     <>
       <Helmet>
         <script
-          src={`https://maps.googleapis.com/maps/api/js?key=${
-            import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-          }&libraries=geometry`}
+          src={`https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(
+            "AIzaSyD-22rI7vas58Qk6re2DTF2UB2kKPolmb0"
+          )}&libraries=geometry`}
           async
           defer
         />
       </Helmet>
-      <Box ref={mapRef} width="100%" height="400px" />
+      <Box ref={mapRef} width="100%" height="100vh" />
     </>
   );
 };
