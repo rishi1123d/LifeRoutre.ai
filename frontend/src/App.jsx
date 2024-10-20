@@ -3,7 +3,6 @@ import { Box, Heading } from "@chakra-ui/react";
 import "./App.css";
 import LocationForm from "./components/LocationForm";
 import MapIframe from "./components/RouteMap";
-import initMap from "./components/MapWithPolyline";
 import GoogleMapScript from "./components/GoogleMapScript";
 import GoogleMap from "./components/MapWithPolyline";
 

@@ -5,11 +5,8 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
   Stack,
   Heading,
-  FormErrorMessage,
-  FormHelperText,
 } from "@chakra-ui/react";
 
 const LocationForm = ({ onSubmit }) => {
