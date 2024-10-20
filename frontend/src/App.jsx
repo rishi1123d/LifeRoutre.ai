@@ -18,7 +18,7 @@ function App() {
       <Box width="100%" height="100%">
         <LocationForm onSubmit={handleFormSubmit} />
         {/* <MapIframe /> */}
-        {/* <GoogleMapScript apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} /> */}
+        {/* <GoogleMapScript apiKey={"AIzaSyBAawKtT7nWE1mCyo2PgM6yIt3_UiU5qII"} /> */}
         <GoogleMap />
       </Box>
     </ChakraProvider>
