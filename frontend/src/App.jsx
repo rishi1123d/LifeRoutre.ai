@@ -3,8 +3,9 @@ import { Box, Heading } from "@chakra-ui/react";
 import "./App.css";
 import LocationForm from "./components/LocationForm";
 import MapIframe from "./components/RouteMap";
-// import PolylineTest from "./components/polylinestuff";
-// import SimpleMap from "./components/MapWithPolyline";
+import initMap from "./components/MapWithPolyline";
+import GoogleMapScript from "./components/GoogleMapScript";
+import GoogleMap from "./components/MapWithPolyline";
 
 function App() {
   const handleFormSubmit = (start, end) => {
@@ -15,12 +16,10 @@ function App() {
   return (
     <ChakraProvider>
       <Box width="100%" height="100%">
-        <Heading as="h1">Life Route</Heading>
         <LocationForm onSubmit={handleFormSubmit} />
-        <MapIframe />
-        {/* <SimpleMap /> */}
-        {/* <PolylineTest /> */}
-        {/* <MapWithPolyline /> */}
+        {/* <MapIframe /> */}
+        {/* <GoogleMapScript apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} /> */}
+        <GoogleMap />
       </Box>
     </ChakraProvider>
   );

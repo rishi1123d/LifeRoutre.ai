@@ -7,6 +7,7 @@ import {
   Input,
   InputGroup,
   Stack,
+  Heading,
   FormErrorMessage,
   FormHelperText,
 } from "@chakra-ui/react";
@@ -28,7 +29,8 @@ const LocationForm = ({ onSubmit }) => {
 
   return (
     <Box as="form" onSubmit={handleSubmit}>
-      <Stack direction="column" spacing="24px">
+      <Stack direction="column">
+        <Heading as="h1">Life Route</Heading>
         <FormControl>
           <FormLabel htmlFor="startLocation">Starting Location</FormLabel>
           <Input
