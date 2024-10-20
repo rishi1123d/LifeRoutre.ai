@@ -83,7 +83,7 @@ async function getBestPath(apiKey, origin, destination) {
 
 async function formatRoute(route) {
     if (route) {
-        return {polyLine: route.overview_polyline.points, distance: route.legs[0].distance.text, duration: route.legs[0].duration.text};
+        return {polyline: route.overview_polyline.points, distance: route.legs[0].distance.text, duration: route.legs[0].duration.text};
     }
     return null;
 }
