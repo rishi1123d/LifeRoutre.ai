@@ -65,7 +65,7 @@ const GoogleMap = (encodedPolyline, eta) => {
         <p>Estimated time of arrival: ${eta}</p>
         </div>
       )}
-      <Box ref={mapRef} width="100%" height="400px" />
+      <Box ref={mapRef} width="100%" height="400px" /> {/* THIS IS WHERE CSS MATTERS */}
     </>
   );
 };
